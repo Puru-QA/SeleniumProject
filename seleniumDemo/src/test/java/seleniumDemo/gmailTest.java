@@ -2,16 +2,14 @@ package seleniumDemo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 public class gmailTest extends BaseClass {
 
-
 	@Test
 	public void gMail() throws InterruptedException {
-		
-		
-		
+
 		/*
 		 * WebElement useButton =
 		 * driver.findElement(By.xpath("(//button[contains(text(),'Use')])[1]"));
@@ -27,12 +25,25 @@ public class gmailTest extends BaseClass {
 		 * driver.findElement(By.xpath("//button[contains(text(),\"Log out\")]"));
 		 * logOut.click();
 		 */
-		 
-		 
-		
+
 		PageLogin pageLogin = new PageLogin(driver);
-		//pageLogin.loginGmail("daadhya28@gmail.com", "Aadhya22!");
+		// pageLogin.loginGmail("daadhya28@gmail.com", "Aadhya22!");
+
+
 		pageLogin.clickUseButton();
 		pageLogin.clickLoginButton();
+		pageLogin.clickCustomers();
+		pageLogin.clickCreditCards();
+		pageLogin.clickBlockCard();
+		pageLogin.clickLogOut();
+
+		pageLogin.clickUseButton2();
+		pageLogin.clickLoginButton2();
+		pageLogin.clickCreditCard2();
+		pageLogin.clickPayBill();
+		pageLogin.clickTransferNowButton();
+		pageLogin.clickMobileRecharge();
+		
+
 	}
 }

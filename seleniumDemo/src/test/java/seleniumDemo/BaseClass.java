@@ -19,12 +19,12 @@ public class BaseClass {
 
 		// driver.get("https://accounts.google.com/");
 		driver.get("file:///C:/Users/purus/Downloads/sahyog-bank.html");
-		
+
 	}
 
-	
-	  @AfterMethod public void tearDown() {
-	  
-	  }
-	 
+	@AfterMethod
+	public void tearDown() {
+
+	}
+
 }
