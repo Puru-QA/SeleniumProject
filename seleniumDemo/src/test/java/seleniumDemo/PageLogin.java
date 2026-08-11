@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,11 +14,12 @@ public class PageLogin extends BaseClass {
 	WebDriver driver;
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-	public PageLogin(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-
-	}
+	/*
+	 * public PageLogin() { this.driver = driver; PageFactory.initElements(driver,
+	 * this);
+	 * 
+	 * }
+	 */
 
 	@FindBy(xpath = "(//button[contains(text(),'Use')])[1]")
 	private WebElement useButton;
@@ -74,6 +74,10 @@ public class PageLogin extends BaseClass {
 	Select select = new Select(dropdown);
 
 	/* select.selectByVisibleText("Jio"); */
+
+	public PageLogin(WebDriver driver2) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public WebElement getUseButton() {
 		return useButton;

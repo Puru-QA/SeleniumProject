@@ -1,16 +1,39 @@
 package seleniumDemo;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class gmailTest extends BaseClass {
 
 	@Test
-	public void gMail() throws InterruptedException {
+	public void validate() {
 
+		PageLogin pageLogin = new PageLogin(driver);
+		pageLogin.clickUseButton();
+		pageLogin.clickLoginButton();
+		
+		DashBoardPage dashboardpage = new DashBoardPage(driver);
+		WebElement ActualName = dashboardpage.getValidateName();
+		WebElement ActualAmount = dashboardpage.getValidateAmount();
+		
+		
+		Assert.assertEquals(ActualName, "Ananya Rao");
+		Assert.assertEquals(ActualAmount, "- ₹5,000");
+
+		SoftAssert softAssert = new SoftAssert();
+
+		softAssert.assertEquals(ActualName, "Ananya Rao");
+
+		boolean condition = false;
+		softAssert.assertTrue(condition);
+
+		softAssert.assertAll();
 		/*
+		 * public void gMail() throws InterruptedException {
+		 * 
+		 * 
 		 * WebElement useButton =
 		 * driver.findElement(By.xpath("(//button[contains(text(),'Use')])[1]"));
 		 * useButton.click(); WebElement loginButton =
@@ -24,26 +47,20 @@ public class gmailTest extends BaseClass {
 		 * blockCard.click(); WebElement logOut =
 		 * driver.findElement(By.xpath("//button[contains(text(),\"Log out\")]"));
 		 * logOut.click();
+		 * 
+		 * 
+		 * PageLogin pageLogin = new PageLogin(driver); //
+		 * pageLogin.loginGmail("daadhya28@gmail.com", "Aadhya22!");
+		 * 
+		 * 
+		 * pageLogin.clickUseButton(); pageLogin.clickLoginButton();
+		 * pageLogin.clickCustomers(); pageLogin.clickCreditCards();
+		 * pageLogin.clickBlockCard(); pageLogin.clickLogOut();
+		 * 
+		 * pageLogin.clickUseButton2(); pageLogin.clickLoginButton2();
+		 * pageLogin.clickCreditCard2(); pageLogin.clickPayBill();
+		 * pageLogin.clickTransferNowButton(); pageLogin.clickMobileRecharge();
 		 */
-
-		PageLogin pageLogin = new PageLogin(driver);
-		// pageLogin.loginGmail("daadhya28@gmail.com", "Aadhya22!");
-
-
-		pageLogin.clickUseButton();
-		pageLogin.clickLoginButton();
-		pageLogin.clickCustomers();
-		pageLogin.clickCreditCards();
-		pageLogin.clickBlockCard();
-		pageLogin.clickLogOut();
-
-		pageLogin.clickUseButton2();
-		pageLogin.clickLoginButton2();
-		pageLogin.clickCreditCard2();
-		pageLogin.clickPayBill();
-		pageLogin.clickTransferNowButton();
-		pageLogin.clickMobileRecharge();
-		
 
 	}
 }

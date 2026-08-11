@@ -5,9 +5,9 @@
     <classes>
       <class name="seleniumDemo.gmailTest">
         <methods>
-          <include name="gMail"/>
           <include name="tearDown"/>
           <include name="browserSetUp"/>
+          <include name="validate"/>
         </methods>
       </class> <!-- seleniumDemo.gmailTest -->
     </classes>

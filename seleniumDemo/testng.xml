@@ -5,7 +5,8 @@
     <classes>
       <class name="seleniumDemo.BaseClass"/>
       <class name="seleniumDemo.PageLogin"/>
-      <class name="seleniumDemo.gmailTest">
+      <class name="seleniumDemo.gmailTest"/>
+      <class name="seleniumDemo.DashBoardPage"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
