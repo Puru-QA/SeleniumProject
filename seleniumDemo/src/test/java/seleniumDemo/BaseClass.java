@@ -2,29 +2,53 @@ package seleniumDemo;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import utils.ConfigReader;
+
 public class BaseClass {
 
+	ConfigReader configReader;
+
 	protected WebDriver driver;
+	
 	protected WebDriverWait wait;
 
 	@BeforeMethod
 	public void browserSetUp() throws InterruptedException {
 
-		driver = new ChromeDriver();
+		configReader = new ConfigReader();
+		
+		String url = configReader.getUrl();
+		
+		String browser = configReader.getBrowser();
+		
+		if (browser.equalsIgnoreCase("chrome")) {
+
+			driver = new ChromeDriver();
+
+		} else if (browser.equalsIgnoreCase("firefox")) {
+
+			driver = new FirefoxDriver();
+
+		} else if (browser.equalsIgnoreCase("edge")) {
+
+			driver = new EdgeDriver();
+
+		}
+
 		driver.manage().window().maximize();
 
-		// driver.get("https://accounts.google.com/");
-		driver.get("file:///C:/Users/purus/Downloads/sahyog-bank.html");
+		driver.get(url);
 
 	}
 
 	@AfterMethod
 	public void tearDown() {
-
+		
 	}
-
 }
