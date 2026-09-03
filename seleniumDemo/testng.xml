@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Selenium Suite">
-<listeners>
-<listener class-name="Listeners.TestListener"/>
-</listeners>
-  <test name="Chrome Test">
-    <classes>
-      <class name="seleniumDemo.BaseClass"/>
-      <class name="seleniumDemo.PageLogin"/>
-      <class name="seleniumDemo.gmailTest"/>
-      <class name="seleniumDemo.DashBoardPage"/>   
-    </classes>
-  </test> <!-- Test -->
+	<test name="Login Test">
+		<classes>
+			<class name="seleniumDemo.LoginTest"></class>
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

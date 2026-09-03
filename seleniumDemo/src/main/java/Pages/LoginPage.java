@@ -146,8 +146,8 @@ public class LoginPage {
 		return accountNumber;
 	}
 
-	public void getLogOutButton() {
-		logOutButton.click();
+	public WebElement getLogOutButton() {
+		return logOutButton;
 	}
 
 }

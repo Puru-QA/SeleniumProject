@@ -1,7 +1,6 @@
 package seleniumDemo;
 
 import java.time.Duration;
-import java.util.Properties;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,8 +11,6 @@ import Pages.LoginPage;
 import utils.loginDataProvider;
 
 public class LoginTest extends BaseClass {
-
-	Properties prop;
 
 	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
 	public void usingExcell(String username, String password) {
@@ -29,43 +26,40 @@ public class LoginTest extends BaseClass {
 		boolean displayed = loginPage.getBankOperationsText().isDisplayed();
 
 		Assert.assertTrue(displayed, "Bank Operations text is not displayed");
-
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void adminLogin(String adminLogin, String adminPassWord) {
+	@Test
+	public void adminLogin() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.adminLogin("admin@sahyogbank.in", "admin123");
-		System.out.println("Admin Login Successfull");
-		
+
+		System.out.println("Admin Login Successful");
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void customerLoginS(String customerUsrNanme, String customerPassWrd) {
+	@Test
+	public void customerLoginS() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.customerLogin("ananya@sahyogbank.in", "customer123");
 
-		System.out.println("Customer Login Successfull");
-		
+		System.out.println("Customer Login Successful");
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void credentialsF(String userNameF, String passWordF) {
+	@Test
+	public void credentialsF() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.failedLogin("puru@123.in", "puru123");
 
 		System.out.println("Invalid Login Failed");
-		
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void overViewStats(String adminLogin, String adminPassWord) {
+	@Test
+	public void overViewStats() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -73,12 +67,11 @@ public class LoginTest extends BaseClass {
 
 		loginPage.getOverViewStats();
 
-		System.out.println("Admin Login Successfull");
-		
+		System.out.println("Overview Stats displayed");
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void accountsCustomers(String adminLogin, String adminPassWord) {
+	@Test
+	public void accountsCustomers() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -87,11 +80,10 @@ public class LoginTest extends BaseClass {
 		loginPage.accountsSection();
 
 		System.out.println("All Customers shown in Admin Accounts Section");
-		
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void transactionsLedger(String adminLogin, String adminPassWord) {
+	@Test
+	public void transactionsLedger() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -99,12 +91,11 @@ public class LoginTest extends BaseClass {
 
 		loginPage.transactionsLedger();
 
-		System.out.println("Transactions Ledger Displays all transactions");
-		
+		System.out.println("Transactions Ledger displays all transactions");
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void approveLoan(String adminLogin, String adminPassWord) {
+	@Test
+	public void approveLoan() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -113,11 +104,10 @@ public class LoginTest extends BaseClass {
 		loginPage.approvalsSection();
 
 		System.out.println("Loan Approved");
-
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void decline(String adminLogin, String adminPassWord) {
+	@Test
+	public void decline() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -126,11 +116,10 @@ public class LoginTest extends BaseClass {
 		loginPage.decline();
 
 		System.out.println("Loan Declined");
-
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void creditSection(String customerUsrNanme, String customerPassWrd) {
+	@Test
+	public void creditSection() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
@@ -139,34 +128,29 @@ public class LoginTest extends BaseClass {
 		loginPage.creditSection();
 
 		System.out.println("Credit Section Displayed");
-
 	}
 
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void logOut(String adminLogin, String adminPassWord) {
+	@Test
+	public void logOut() {
 
 		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.adminLogin("admin@sahyogbank.in", "admin123");
 
-		loginPage.getLogOutButton();
+		loginPage.getLogOutButton().click();
 
-		System.out.println("LogOut Successfull");
-
+		System.out.println("Logout Successful");
 	}
-	
-	@Test(dataProvider = "loginData", dataProviderClass = loginDataProvider.class)
-	public void overViewSection(String customerUsrNanme, String customerPassWrd) {
-		
+
+	@Test
+	public void overViewSection() {
+
 		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.customerLogin("ananya@sahyogbank.in", "customer123");
-		
-		loginPage.getOverView();
-		
-		System.out.println("OverView Displays Correct Balance");
-		
-		
-	}
 
+		loginPage.getOverView();
+
+		System.out.println("Overview Displays Correct Balance");
+	}
 }

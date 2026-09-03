@@ -6,7 +6,7 @@
       <class name="seleniumDemo.LoginTest">
         <methods>
           <include name="tearDown"/>
-          <include name="decline"/>
+          <include name="adminLogin"/>
           <include name="browserSetUp"/>
         </methods>
       </class> <!-- seleniumDemo.LoginTest -->

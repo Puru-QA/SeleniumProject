@@ -15,18 +15,18 @@ public class BaseClass {
 	ConfigReader configReader;
 
 	protected WebDriver driver;
-	
+
 	protected WebDriverWait wait;
 
 	@BeforeMethod
 	public void browserSetUp() throws InterruptedException {
 
 		configReader = new ConfigReader();
-		
+
 		String url = configReader.getUrl();
-		
+
 		String browser = configReader.getBrowser();
-		
+
 		if (browser.equalsIgnoreCase("chrome")) {
 
 			driver = new ChromeDriver();
@@ -49,6 +49,6 @@ public class BaseClass {
 
 	@AfterMethod
 	public void tearDown() {
-		
+		driver.quit();
 	}
 }
