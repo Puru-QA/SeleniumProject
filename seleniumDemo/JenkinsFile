@@ -7,63 +7,137 @@ pipeline {
     }
 
     triggers {
-
         githubPush()
-
         cron('0 6 * * *')
-
     }
 
     stages {
 
         stage('Checkout') {
-
             steps {
-
                 echo 'Code checked out successfully'
-
             }
-
         }
 
         stage('Build') {
-
             steps {
-
                 dir('seleniumDemo') {
-
                     bat 'mvn -version'
                     bat 'mvn clean compile'
-
                 }
-
             }
-
         }
 
         stage('Test') {
-
             steps {
-
                 dir('seleniumDemo') {
-
                     bat 'mvn test -Dheadless=true'
-
                 }
-
             }
 
             post {
-
                 always {
-
                     junit allowEmptyResults: true,
                           testResults: 'seleniumDemo/target/surefire-reports/*.xml'
-
                 }
-
             }
+        }
+    }
 
+    post {
+
+        always {
+
+            echo "Build result: ${currentBuild.currentResult}"
+
+            archiveArtifacts artifacts: 'seleniumDemo/allure-results/**',
+                             allowEmptyArchive: true
         }
 
+        success {
+
+            emailext(
+                subject: "BUILD PASSED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                mimeType: 'text/html',
+                to: "daadhya28@gmail.com",
+                body: """
+                <html>
+                <body>
+
+                <h1 style="color:green;">BUILD PASSED</h1>
+
+                <p>Hi Team,</p>
+
+                <p>All automation tests have successfully PASSED.</p>
+
+                <p>
+                <b>Job:</b> ${env.JOB_NAME}<br>
+                <b>Build:</b> #${env.BUILD_NUMBER}<br>
+                <b>Status:</b> PASSED<br>
+                <b>Duration:</b> ${currentBuild.durationString}<br>
+                </p>
+
+                <p>
+                    <a href="${env.BUILD_URL}">
+                        View Build Details
+                    </a>
+                </p>
+
+                <p>
+                Jenkins CI/CD | Selenium Automation
+                </p>
+
+                </body>
+                </html>
+                """
+            )
+        }
+
+        failure {
+
+            emailext(
+                subject: "BUILD FAILED - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                mimeType: 'text/html',
+                attachLog: true,
+                to: "daadhya28@gmail.com",
+                body: """
+                <html>
+                <body>
+
+                <h1 style="color:red;">BUILD FAILED</h1>
+
+                <p>Hi Team,</p>
+
+                <p>
+                The automation build has FAILED.
+                Please check the attached Jenkins console log.
+                </p>
+
+                <p>
+                <b>Job:</b> ${env.JOB_NAME}<br>
+                <b>Build:</b> #${env.BUILD_NUMBER}<br>
+                <b>Status:</b> FAILED<br>
+                <b>Duration:</b> ${currentBuild.durationString}<br>
+                </p>
+
+                <p>
+                    <a href="${env.BUILD_URL}">
+                        View Failure Details
+                    </a>
+                </p>
+
+                <p>
+                Jenkins CI/CD | Selenium Automation
+                </p>
+
+                </body>
+                </html>
+                """
+            )
+        }
+
+        cleanup {
+            cleanWs()
+        }
     }
+}
