@@ -28,7 +28,7 @@ public class LoginTest extends BaseClass {
 		Assert.assertTrue(displayed, "Bank Operations text is not displayed");
 	}
 
-	@Test
+	@Test(groups = "smoke")
 	public void adminLogin() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -38,7 +38,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Admin Login Successful");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void customerLoginS() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -48,7 +48,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Customer Login Successful");
 	}
 
-	@Test
+	@Test(groups = "smoke")
 	public void credentialsF() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -58,7 +58,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Invalid Login Failed");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void overViewStats() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -70,7 +70,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Overview Stats displayed");
 	}
 
-	@Test
+	@Test(groups = {"smoke", "regression"})
 	public void accountsCustomers() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -82,7 +82,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("All Customers shown in Admin Accounts Section");
 	}
 
-	@Test
+	@Test(groups = "smoke")
 	public void transactionsLedger() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -94,7 +94,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Transactions Ledger displays all transactions");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void approveLoan() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -106,7 +106,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Loan Approved");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void decline() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -118,7 +118,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Loan Declined");
 	}
 
-	@Test
+	@Test(groups = "smoke")
 	public void creditSection() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -130,7 +130,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Credit Section Displayed");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void logOut() {
 
 		LoginPage loginPage = new LoginPage(driver);
@@ -142,7 +142,7 @@ public class LoginTest extends BaseClass {
 		System.out.println("Logout Successful");
 	}
 
-	@Test
+	@Test(groups = "regression")
 	public void overViewSection() {
 
 		LoginPage loginPage = new LoginPage(driver);

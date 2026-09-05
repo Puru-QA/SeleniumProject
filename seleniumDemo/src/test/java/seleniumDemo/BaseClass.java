@@ -17,8 +17,15 @@ public class BaseClass {
 	protected WebDriver driver;
 
 	protected WebDriverWait wait;
+	
+	 private static ThreadLocal<WebDriver> driver1 =
+	            new ThreadLocal<>();
 
-	@BeforeMethod
+	    public WebDriver getDriver() {
+	        return driver1.get();
+	    }
+
+	@BeforeMethod(alwaysRun = true)
 	public void browserSetUp() throws InterruptedException {
 
 		configReader = new ConfigReader();
@@ -47,7 +54,7 @@ public class BaseClass {
 
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		driver.quit();
 	}
